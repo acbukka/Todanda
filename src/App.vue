@@ -2,7 +2,8 @@
   <div class="container">
     <div class="app">
       <img class="panda-img" src="./assets/panda.png" alt="">
-      <h1>Todanda</h1>
+      <h1 class="app-title">Todanda</h1>
+      <todo-form @create="addTodo"></todo-form>
       <todos-active :todos="todos"></todos-active>
       <todos-complited :todos="todos"></todos-complited>
     </div>
@@ -10,6 +11,7 @@
 </template>
 
 <script>
+import TodoForm from '@/components/TodoForm';
 import TodosActive from '@/components/TodosActive';
 import TodosComplited from '@/components/TodosComplited';
 
@@ -18,28 +20,31 @@ export default {
   name: 'App',
   components: {
     TodosActive,
-    TodosComplited
+    TodosComplited,
+    TodoForm
   },
   data() {
     return {
       todos: {
         active: [
-          { id: 1, title: 'JavaScript', body: 'Описание поста 1' },
-          { id: 2, title: 'JavaScript', body: 'Описание поста 2' },
-          { id: 3, title: 'JavaScript', body: 'Описание поста 3' },
-          { id: 4, title: 'JavaScript', body: 'Описание поста 4' },
+          { id: 1, title: 'Add your first todo'},
+          { id: 2, title: 'Get happy'},
         ],
         complited: [
-          { id: 1, title: 'JavaScript', body: 'Описание поста 1' },
-          { id: 2, title: 'JavaScript', body: 'Описание поста 2' },
+          { id: 1, title: 'Open the Todanda :)'},
         ]
       }
+    }
+  },
+  methods: {
+    addTodo(todo) {
+      this.todos.active.push(todo);
     }
   }
 }
 </script>
 
-<style>
+<style lang="scss">
 @import url('https://fonts.googleapis.com/css2?family=Montserrat&display=swap');
 
 * {
@@ -77,6 +82,9 @@ body {
   height: 800px;
   margin: 0 auto;
   text-align: center;
+  &-title {
+    margin-bottom: 30px;
+  }
 }
 
 .panda-img {
