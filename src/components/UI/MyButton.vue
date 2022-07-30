@@ -12,6 +12,9 @@
 
 <style lang="scss" scoped>
   .btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
   cursor: pointer;
   background: transparent;
   border-radius: 5px;
@@ -19,8 +22,10 @@
   color: gray;
   border: 1px solid gray;
   transition: all .2s;
+  z-index: 3;
   &:hover {
     border: 1px solid black;
+    color: black;
   }
 }
 </style>

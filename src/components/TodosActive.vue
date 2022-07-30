@@ -2,12 +2,15 @@
   <div class="todo-list">
     <h2 class="todo-list__title">Active:</h2>
     <ul>
-      <todo-item 
+      <todo-item class="todo-item" 
         v-for="todo in todos.active" 
         :todo="todo" 
         :key="todo.id"
+        @remove="$emit('remove', todo)" 
+        @done="$emit('done', todo)"
+        :isComplited="isComplited"
         >
-        {{ todo.title }}
+        <p class="todo-title">{{ todo.title }}</p>
       </todo-item>
     </ul>
   </div>
@@ -18,6 +21,10 @@ export default {
   props: {
     todos: {
       type: Object,
+      required: true,
+    },
+    isComplited: {
+      type: Boolean,
       required: true,
     }
   },

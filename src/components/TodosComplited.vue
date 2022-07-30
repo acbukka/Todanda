@@ -6,8 +6,11 @@
         v-for="todo in todos.complited" 
         :todo="todo" 
         :key="todo.id"
+        @remove="$emit('remove', todo)" 
+        @restore="$emit('restore', todo)" 
+        :isComplited="!isComplited"
         >
-        {{ todo.title }}
+        <p class="todo-title">{{ todo.title }}</p>
       </todo-item>
     </ul>
   </div>
@@ -18,6 +21,10 @@ export default {
   props: {
     todos: {
       type: Object,
+      required: true,
+    },
+    isComplited: {
+      type: Boolean,
       required: true,
     }
   },
@@ -43,7 +50,7 @@ export default {
     height: 100%;
     background: rgba(0, 0, 0, 0.1);
     border-radius: 5px;
-    z-index: 2;
+    z-index: 1;
   }
 }
 </style>
