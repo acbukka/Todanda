@@ -8,7 +8,7 @@
         :key="todo.id"
         @remove="$emit('remove', todo)" 
         @restore="$emit('restore', todo)" 
-        :isComplited="!isComplited"
+        :isActive="!isActive"
         >
         <p class="todo-title">{{ todo.title }}</p>
       </todo-item>
@@ -23,7 +23,7 @@ export default {
       type: Object,
       required: true,
     },
-    isComplited: {
+    isActive: {
       type: Boolean,
       required: true,
     }

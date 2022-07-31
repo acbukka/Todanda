@@ -8,12 +8,12 @@
       >
       <img class="del-img" src="../../assets/del.png" alt="Remove task">
       </my-button>
-      <my-button v-if="isComplited" class="done-btn"
+      <my-button v-if="isActive" class="done-btn"
       @click="$emit('done', todo)"
       >
       <img class="done-img" src="../../assets/done.png" alt="Done task">
       </my-button>
-      <my-button v-if="!isComplited" class="restore-btn"
+      <my-button v-if="!isActive" class="restore-btn"
       @click="$emit('restore', todo)"
       >
       <img class="restore-img" src="../../assets/restore.svg" alt="Done task">
@@ -30,7 +30,7 @@ export default {
       type: Object,
       required: true,
     },
-    isComplited: {
+    isActive: {
       type: Boolean,
       required: true,
     }
@@ -68,7 +68,7 @@ export default {
     top: 4px;
     right: 31px;
     position: absolute;
-    padding: 3.9px;
+    padding: 3.4px;
   }
   .del-img {
     width: 20px;
@@ -77,7 +77,7 @@ export default {
     width: 21px;
   }
   .restore-img {
-    width: 15px;
+    width: 16px;
   }
 }
 </style>

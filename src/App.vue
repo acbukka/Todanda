@@ -4,17 +4,17 @@
       <img class="panda-img" src="./assets/panda.png" alt="">
       <h1 class="app-title">Todanda</h1>
       <todo-form @create="addTodo"></todo-form>
-      <todos-active 
+      <todos-active v-model="todos.active"
         :todos="todos" 
         @remove="removeTodo" 
         @done="doneTodo" 
-        :isComplited="isComplited"></todos-active
+        :isActive="isActive"></todos-active
         >
       <todos-complited 
         :todos="todos" 
         @remove="removeTodo" 
         @restore="restoreTodo" 
-        :isComplited="isComplited"></todos-complited
+        :isActive="isActive"></todos-complited
         >
     </div>
   </div>
@@ -44,26 +44,40 @@ export default {
           { id: 3, title: 'Open the Todanda :)'},
         ]
       },
-      isComplited: true,
+      isActive: true,
     }
   },
   methods: {
     addTodo(todo) {
       this.todos.active.push(todo);
+      this.todoStorage();
     },
     removeTodo(todo) {
       this.todos.active = this.todos.active.filter(p => p.id !== todo.id);
       this.todos.complited = this.todos.complited.filter(p => p.id !== todo.id);
+      this.todoStorage();
     },
     doneTodo(todo) {
       this.todos.active = this.todos.active.filter(p => p.id !== todo.id);
       this.todos.complited.push(todo);
+      this.todoStorage();
     },
     restoreTodo(todo) {
       this.todos.complited = this.todos.complited.filter(p => p.id !== todo.id);
       this.todos.active.push(todo);
+      this.todoStorage();
+    },
+    todoStorage() {
+      const parsed = JSON.stringify(this.todos);
+      localStorage.setItem('todos', parsed);
     }
-  }
+  },
+  mounted() {
+    if (localStorage.todos) {
+      const newTodos = JSON.parse(localStorage.todos);
+      this.todos = newTodos;
+    }
+  },
 }
 </script>
 
