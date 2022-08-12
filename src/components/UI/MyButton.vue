@@ -18,7 +18,7 @@
   cursor: pointer;
   background: transparent;
   border-radius: 5px;
-  padding: 10px;
+  padding: 10.1px;
   color: gray;
   border: 1px solid gray;
   transition: all .2s;
