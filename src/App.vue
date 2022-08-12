@@ -116,7 +116,7 @@ body {
   border-radius: 16px;
   background-color: #fafafa;
   max-width: 590px;
-  height: 800px;
+  height: 95%;
   margin: 0 auto;
   text-align: center;
   &-title {
