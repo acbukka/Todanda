@@ -72,6 +72,18 @@ export default {
       localStorage.setItem('todos', parsed);
     }
   },
+  created() {
+    // let's create some script for 100vh problems
+    let vh = window.innerHeight * 0.01;
+    // Then we set the value in the --vh custom property to the root of the document
+    document.documentElement.style.setProperty('--vh', `${vh}px`);
+    // also apply this to resizes
+    window.addEventListener('resize', () => {
+      // We execute the same script as before
+      let vh = window.innerHeight * 0.01;
+      document.documentElement.style.setProperty('--vh', `${vh}px`);
+    });
+  },
   mounted() {
     if (localStorage.todos) {
       const newTodos = JSON.parse(localStorage.todos);
@@ -103,6 +115,7 @@ body {
 .container {
   padding: 0 20px;
   height: 100vh;
+  height: calc(var(--vh, 1vh) * 100);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -116,7 +129,7 @@ body {
   border-radius: 16px;
   background-color: #fafafa;
   max-width: 590px;
-  height: 95%;
+  height: 90%;
   margin: 0 auto;
   text-align: center;
   &-title {
